@@ -1,4 +1,10 @@
+import {CREATE_TRADES,FETCH_TRADES} from '../actions/types';
+
+
 export const createTrade =  formValues =>  {
-    console.log(formValues,"anything");
-   return {type:'CREATE_TRADE',payload: formValues}
+   return {type:CREATE_TRADES,payload: formValues}
+}
+
+export const fetchTrades = () => {
+    return {type:FETCH_TRADES}
 }

@@ -1,0 +1,2 @@
+export const FETCH_TRADES = 'FETCH_TRADES';
+export const CREATE_TRADES = 'CREATE_TRADES';

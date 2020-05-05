@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 class Header extends Component {
     render() {
         return (
-            <header>
+            <header className="ui header center aligned blue" style={{ padding:'40px 0'}}>
                 <h1>
                     Trade Buddy
                 </h1>
                 <h4>
-                    Organize Trades and Keep Track of Progress
+                    Organize  Stock Trades and Keep Track of Progress
                 </h4>
             </header>
         );
