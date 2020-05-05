@@ -11,7 +11,7 @@ function App() {
     <div className="">
       <Header/>
         <BrowserRouter>
-          <Route path="/pages" exact component={MainPage}/>
+          <Route path="/" exact component={MainPage}/>
           <Route path='/pages/trade_enter' exact component={TradeEnter}/>
           <Route path="/pages/trade_view" exact component={TradeView}/>
         </BrowserRouter>
