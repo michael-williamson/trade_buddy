@@ -1,4 +1,4 @@
-import {CREATE_TRADES,FETCH_TRADES} from '../actions/types';
+import {CREATE_TRADES,FETCH_TRADES} from './types';
 
 
 export const createTrade =  formValues =>  {
