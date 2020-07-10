@@ -1,4 +1,3 @@
 node_modules
 server/node_modules
 config
-server/client/src/keys/keys.js
