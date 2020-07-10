@@ -1,9 +1,22 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
+
+const bodyParser = require('body-parser');
+require('./models/User');
+require('./models/Trades');
 const app = express(); 
 
-app.get('/',(req,res)=>{
-    res.send('hi there');
-});
+app.use(bodyParser.json());
+
+// mongoose.connect(keys.mongoURI);  
+mongoose.connect(keys.devURI,{ useNewUrlParser: true });
+
+require('./routes/createTrade')(app);
+require('./routes/fetchTrades')(app);
+require('./routes/fetchDayTrades')(app);
+require('./routes/fetchSwingTrades')(app);
+require('./routes/deleteTrade')(app);
 
 if(process.env.NODE_ENV === 'production'){
     //express will serve up production assets

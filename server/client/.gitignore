@@ -7,6 +7,8 @@
 
 # testing
 /coverage
+id
+keys.js
 
 # production
 /build
