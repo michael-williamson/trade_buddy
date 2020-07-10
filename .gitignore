@@ -20,6 +20,7 @@ https://glacial-everglades-42730.herokuapp.com/
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local
