@@ -18,3 +18,4 @@ III.  Then you can visit the Analysis page by clicking the Analysis tab.  On thi
 When you log out and log back in again your data and progress will be right where you left it.
 
 Enjoy Trade Buddy!!!!
+
