@@ -9,8 +9,8 @@ const app = express();
 
 app.use(bodyParser.json());
 
-// mongoose.connect(keys.mongoURI);  
-mongoose.connect(keys.devURI,{ useNewUrlParser: true });
+mongoose.connect(keys.mongoURI);  
+// mongoose.connect(keys.devURI,{ useNewUrlParser: true });
 
 require('./routes/createTrade')(app);
 require('./routes/fetchTrades')(app);
