@@ -18,7 +18,9 @@ module.exports = app => {
             }else{
             res.send(item.trades)
             }
-        })}else{
+        })
+        .catch(err=>console.log(err))
+    }else{
             User.findOne({googleId:id}).populate(
                 {
                 path:'trades',
@@ -30,9 +32,8 @@ module.exports = app => {
                 }else{
                 res.send(item.trades)
                 }
-            })            
+            })    
+            .catch(err=>console.log(err))        
         }
-
-    
     });  
 }

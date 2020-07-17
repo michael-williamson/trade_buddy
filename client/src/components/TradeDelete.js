@@ -7,7 +7,6 @@ import {deleteTrade} from '../actions/index';
 class TradeDelete extends Component {
 
     render() {
-        console.log(this.props)
         return (
             <div>
                 <Modal deleteTrade={this.props.deleteTrade} id={this.props.match.params.id} googleId={this.props.auth.userId}/>

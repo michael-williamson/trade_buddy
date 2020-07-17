@@ -25,7 +25,6 @@ class Analysis extends Component {
         let shortCount = 0;
         let longCount = 0; 
 
-        let fontSizeSpan = `fontSize:'36px'`
 
         if(this.props.trades === []){
             return

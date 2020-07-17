@@ -9,7 +9,8 @@ module.exports = app => {
         .populate('trades')
         .then((user)=>{
             res.send(user.trades);
-        });
+        })
+        .catch(err=>console.log(err));
     
     });  
 }

@@ -1,5 +1,4 @@
-import {FETCH_TRADES,CREATE_TRADES, DELETE_TRADE, FETCH_DAY_TRADES, RESET_TRADES, FETCH_SWING_TRADES} from '../actions/types';
-import _ from 'lodash';
+import {FETCH_TRADES, FETCH_DAY_TRADES, RESET_TRADES, FETCH_SWING_TRADES} from '../actions/types';
 
 export default (state = [], action) => {
     switch(action.type){
@@ -9,8 +8,6 @@ export default (state = [], action) => {
             return [...action.payload];
         case FETCH_SWING_TRADES:
             return [...action.payload]
-        case DELETE_TRADE:
-            return [state.filter((trade) => trade._id !== action.payload._id)];
         case RESET_TRADES:
             return [];
         default:

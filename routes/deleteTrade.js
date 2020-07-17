@@ -21,15 +21,17 @@ module.exports = app => {
             })
 
             user[0].trades = arr; 
-            user[0].save(); 
+            user[0].save().then(); 
 
         })
+        .catch(err=>console.log(err))
 
 
 
 
         Trades.findByIdAndDelete(id)
-        .then(trade => res.send(trade))
+        .then(() => res.status(202).send({message:"Deletion Successful"}))
+        .catch(err=>console.log(err))
 
 
     });

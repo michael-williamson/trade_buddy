@@ -42,7 +42,8 @@ module.exports = app => {
                         Promise.all([
                             newUser.save(),
                             shortTrade.save()
-                        ]).then((trade) =>  res.send("submitted"));
+                        ]).then((trade) =>  res.send({message:"Trade Created"}))
+                        .catch(err=>console.log(err));
 
                     } else {
                         user
@@ -51,9 +52,11 @@ module.exports = app => {
                         Promise.all([
                             user.save(),
                             shortTrade.save()
-                        ]).then((trade) => res.send("submitted"));
+                        ]).then((trade) => res.send({message:"Trade Created"}))
+                        .catch(err=>console.log(err));;
                     }
-                });
+                })
+                .catch(err=>console.log(err));;
 
         } else if (shortOrLong === 'long' && typeOfTrade === 'Day Trade') {
             const longTrade = new Trades({
@@ -77,7 +80,8 @@ module.exports = app => {
                         Promise.all([
                             newUser.save(),
                             longTrade.save()
-                        ]).then(() => res.send("submitted"));
+                        ]).then(() => res.send({message:"Trade Created"}))
+                        .catch(err=>console.log(err));;
 
                     } else {
                         user
@@ -86,9 +90,12 @@ module.exports = app => {
                         Promise.all([
                             user.save(),
                             longTrade.save()
-                        ]).then(() => res.send("submitted"));
+                        ]).then(() => res.send({message:"Trade Created"}))
+                        .catch(err=>console.log(err));;
                     }
-                });
+                })
+                .catch(err=>console.log(err));
+
         } else if (shortOrLong === 'short' && typeOfTrade === 'Swing Trade') {
             const shortSwingTrade = new Trades({
                 ticker,
@@ -112,7 +119,8 @@ module.exports = app => {
                         Promise.all([
                             newUser.save(),
                             shortSwingTrade.save()
-                        ]).then(() => res.send("submitted"));
+                        ]).then(() => res.send({message:"Trade Created"}))
+                        .catch(err=>console.log(err));;
 
                     } else {
                         user
@@ -121,9 +129,12 @@ module.exports = app => {
                         Promise.all([
                             user.save(),
                             shortSwingTrade.save()
-                        ]).then(() => res.send("submitted"));
+                        ]).then(() => res.send({message:"Trade Created"}))
+                        .catch(err=>console.log(err));;
                     }
-                });
+                })
+                .catch(err=>console.log(err));
+
         } else if (shortOrLong === 'long' && typeOfTrade === 'Swing Trade') {
             const longSwingTrade = new Trades({
                 ticker,
@@ -147,7 +158,8 @@ module.exports = app => {
                         Promise.all([
                             newUser.save(),
                             longSwingTrade.save()
-                        ]).then(() =>res.send("submitted"));
+                        ]).then(() =>res.send({message:"Trade Created"}))
+                        .catch(err=>console.log(err));;
 
                     } else {
                         user
@@ -156,9 +168,11 @@ module.exports = app => {
                         Promise.all([
                             user.save(),
                             longSwingTrade.save()
-                        ]).then(() => res.send("submitted"));
+                        ]).then(() => res.send({message:"Trade Created"}))
+                        .catch(err=>console.log(err));;
                     }
-                });
+                })
+                .catch(err=>console.log(err));
         }
 
     })
