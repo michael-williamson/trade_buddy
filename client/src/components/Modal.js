@@ -5,7 +5,6 @@ import history  from '../history';
 //e.stopPropagation is preventing event bubbling
 
 const Modal = props => {
-    console.log(props)
     return ReactDOM.createPortal(
         <div onClick={()=> history.push('/pages/trade_view')} className="ui dimmer modals visible active">
             <div onClick={(e)=>e.stopPropagation()} className="ui standard modal visible active">

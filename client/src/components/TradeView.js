@@ -36,7 +36,7 @@ class TradeView extends Component {
                         <td>{trade.buyPrice === undefined ? "n/a": trade.buyPrice}</td>
                         <td>{trade.sellPrice === undefined ? "n/a": trade.sellPrice}</td>
                         <td>{trade.numberOfShares}</td>
-                        <td>{trade.startDate} {trade.endDate}</td>
+                        <td>{trade.startDate}{trade.endDate ? ` thru ${trade.endDate}`: ""}</td>
                         <td><Link to={`/pages/trade_delete/${trade._id}`} className="ui button">Delete</Link></td>
                     </tr>
                 );
@@ -56,8 +56,8 @@ class TradeView extends Component {
                     <thead>
                         <tr>
                             <th>Ticker:</th>
-                            <th>Duration</th>
-                            <th>Short/Long?</th>
+                            <th>Duration:</th>
+                            <th>Short/Long:</th>
                             <th>Short Price:</th>
                             <th>Cover Price:</th>
                             <th>Buy Price:</th>

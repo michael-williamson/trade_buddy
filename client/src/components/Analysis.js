@@ -103,7 +103,6 @@ class Analysis extends Component {
     }
 
     render() {
-        console.log(this.state.date)
         return (
             <div style={{backgroundColor:'#f7f7f7'}}>
                <h1 style={{textAlign:'center'}}>Analysis page</h1>
@@ -112,8 +111,8 @@ class Analysis extends Component {
                     <button onClick={()=>this.props.fetchSwingTrades(this.props.auth.userId)} className="ui green button" style={{margin:'10px 0'}}>Swing Trades</button>
                     <div>
                     <input type="date"  value={this.state.date} onChange={e=>this.setState({date:e.target.value})} style={{display:'block', margin:'10px auto'}}/> 
-                    <button onClick={()=>this.props.fetchDayTrades(this.props.auth.userId,this.state.date)} class="ui green button" style={{width: '100%', margin:'10px 0 0'}}>search by date Day Trades</button>
-                    <button onClick={()=>this.props.fetchSwingTrades(this.props.auth.userId,this.state.date)} class="ui green button" style={{width: '100%', margin:'10px 0 40px'}}>search by date Swing Trades</button>
+                    <button onClick={()=>this.props.fetchDayTrades(this.props.auth.userId,this.state.date)} className="ui green button" style={{width: '100%', margin:'10px 0 0'}}>search by date Day Trades</button>
+                    <button onClick={()=>this.props.fetchSwingTrades(this.props.auth.userId,this.state.date)} className="ui green button" style={{width: '100%', margin:'10px 0 40px'}}>search by date Swing Trades</button>
                     </div>
                 </div>
                 {this.displayAnalysis()}
