@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import GoogleAuth from './GoogleAuth';
 import {Link} from 'react-router-dom';
-import stockImage from '../images/stockImage.jpg';
+import stockImage from '../images/stockImageCom.jpg';
 
 class Header extends Component {
     render() {
         return (
-            <header className="ui header center aligned blue" style={{position:'relative', padding:'40px 0', backgroundColor:"yellow", backgroundImage: `url(${stockImage})`}}>
+            <header className="ui header center aligned blue" style={{position:'relative', padding:'40px 0', backgroundColor:"black", backgroundImage: `url(${stockImage})`}}>
                 <Link to="/">
                     <h1 style={{color:'white'}}>
                         Trade Buddy
