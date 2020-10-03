@@ -6,14 +6,11 @@ import {createTrade,fetchTrades} from '../actions/index';
 
 class TradeEnter extends Component {
 
-        warningMessage = true;
-
-
-        radioOneIsChecked = true
-        radioTwoIsChecked  = true
+        state = {
+            radioOneIsChecked : true,
+            radioTwoIsChecked : true 
+        }
  
-
-
      alphaNumeric = value =>{
         if(!value){
             return 'required'
@@ -34,7 +31,6 @@ class TradeEnter extends Component {
         if(!value){
             return 'required'
         }
-
         else{ return value && /\D+/.test(value)
         ? 'can not contain any non numeric characters'
         : undefined}
@@ -42,9 +38,7 @@ class TradeEnter extends Component {
     
     required = value => value ? undefined : 'Required'
 
-    onSubmit = (formValues) => {
-        this.props.createTrade(formValues,this.props.id);
-    }
+    onSubmit = (formValues) =>  this.props.createTrade(formValues,this.props.id);
 
     submitValidation = () => {
         if(!this.props.valid || this.props.pristine){
@@ -53,9 +47,8 @@ class TradeEnter extends Component {
         }else{return false}
     }
 
-    renderInput = ({input,label,meta:{touched,error,warning}}) => {
-
-        return (
+    renderInput = ({input,label,meta:{touched,error,warning}}) => 
+        (
             <div className="field" style={{width:'50%',margin:'0 40px'}}>
                 <label>{label}</label>
                 <div>
@@ -66,59 +59,37 @@ class TradeEnter extends Component {
                 </div>
             </div>
         );
-    }
-
-    renderDateInput = ({input,label}) => {
-
-        return(
-        <div className="field" style={{width:'20%',margin:'0 40px 20px',alignSelf:'center'}}>
-        <label>{label}</label>
-            <input {...input} type="date"/> 
+ 
+    renderDateInput = ({input,label}) => 
+        (
+            <div className="field" style={{width:'20%',margin:'0 40px 20px',alignSelf:'center'}}>
+                <label>{label}</label>
+                <input {...input} type="date"/> 
             </div>
         );
-    }   
-    
-
+  
     renderTrade = ()  => {
-        
         if(Object.keys(this.props.formData).length === 0 && this.props.formData.constructor === Object){
             return (
                 <div style={{height: '200px', width: '200px', backgroundColor:"green"}}>
                     Loading....
                 </div>
-            );
-        
-        }else if(this.props.formData.enterTradesForm.values !== undefined && this.props.formData.enterTradesForm.values.shortOrLong === "short"){
-           
-
-            this.radioOneIsChecked=false 
+            );   
+        }else if(!this.state.radioOneIsChecked){
             return (
                 <Fragment>
                 <Field name="shortPrice" label="Short Price" component={this.renderInput} validate={[this.alphaNumeric]}/>
                 <Field name="coverPrice" label="Cover Price" component={this.renderInput} validate={[this.alphaNumeric]}/>
                 </Fragment>
             );
-        }else if(this.props.formData.enterTradesForm.values !== undefined && this.props.formData.enterTradesForm.values.shortOrLong === "long"){
-            this.radioOneIsChecked=true
-            return (
-                <Fragment>
-                <Field name="buyPrice" label="Buy Price" component={this.renderInput} validate={[this.alphaNumeric]}/>
-                <Field name="sellPrice" label="Sell Price" component={this.renderInput} validate={[this.alphaNumeric]}/>
-                </Fragment>
-            );
         }else {
-    
-    
-    
             return (
                 <Fragment>
                 <Field name="buyPrice" label="Buy Price" component={this.renderInput} validate={[this.alphaNumeric]}/>
                 <Field name="sellPrice" label="Sell Price" component={this.renderInput} validate={[this.alphaNumeric]}/>
                 </Fragment>      
             );
-        }
-            
-    
+        }   
     }
 
     renderDate = () => {
@@ -128,43 +99,19 @@ class TradeEnter extends Component {
                     Loading....
                 </div>
             );
-        
-        }else if(this.props.formData.enterTradesForm.values !== undefined && this.props.formData.enterTradesForm.values.typeOfTrade === "Swing Trade"){
-           
-
-            this.radioTwoIsChecked=false
+        }else if(!this.state.radioTwoIsChecked){
             return (
                 <Fragment>
                     <Field name="startDate" label="Dates" component={this.renderDateInput} validate={[this.required]}/>
                     <Field name="endDate" label='&nbsp;' component={this.renderDateInput} validate={[this.required]}/>
                 </Fragment>
             );
-        }else if(this.props.formData.enterTradesForm.values !== undefined && this.props.formData.enterTradesForm.values.typeOfTrade === "Day Trade"){
-            this.radioTwoIsChecked=true
-            return (
-                <Fragment>
-                    <Field name="startDate" label="Date" component={this.renderDateInput} validate={[this.required]}/>
-                </Fragment>
-            );
         }else {
-    
-    
-    
-            return (
+               return (
                 <Fragment>
                     <Field name="date" label="Date"component={this.renderDateInput} validate={[this.required]}/>
                 </Fragment>      
             );
-        }
-    }
-
-   
-
-    isShortBool = () => {
-        if(this.props.isShort){
-            this.props.isShort(false)
-        }else{
-            this.props.isShort(true)
         }
     }
 
@@ -180,9 +127,9 @@ class TradeEnter extends Component {
                     </div>
                     <div style={{alignSelf:'center'}}>
                     <label htmlFor="short">Short</label>
-                    <Field name="shortOrLong" label="Short" type="radio" value="short" id="short" component="input" style={{marginRight:'20px'}}/>
+                    <Field name="shortOrLong" onFocus={()=>this.setState({radioOneIsChecked:false})} label="Short" type="radio" value="short" id="short" component="input" style={{marginRight:'20px'}}/>
                     <label htmlFor="long">Long</label>
-                    <Field name="shortOrLong" label="Long" type="radio" value="long" id="long" component="input"  checked={ this.radioOneIsChecked ? true : false} />
+                    <Field name="shortOrLong" onFocus={()=>this.setState({radioOneIsChecked:true})} label="Long" type="radio" value="long" id="long" component="input"  checked={this.state.radioOneIsChecked ? true : false} />
                     </div>
                     </div>
                     <Field name="numberOfShares" label="# of Shares"  component={this.renderInput}  validate={[this.noNonNumerics]}/>
@@ -191,9 +138,9 @@ class TradeEnter extends Component {
                     {this.renderDate()}
                     <div style={{alignSelf:'center'}}>
                     <label htmlFor="st">Swing Trade</label>
-                    <Field name="typeOfTrade" label="Long" type="radio"  id="st" value="Swing Trade" component="input" style={{marginRight:'20px'}}  />
+                    <Field name="typeOfTrade" onFocus={()=>this.setState({radioTwoIsChecked:false})} label="Long" type="radio"  id="st" value="Swing Trade" component="input" style={{marginRight:'20px'}}  />
                     <label htmlFor="dt">Day Trade</label>
-                    <Field name="typeOfTrade" label="Short" type="radio"  id="dt" value="Day Trade" component="input"  checked={ this.radioTwoIsChecked ? true : false}/>
+                    <Field name="typeOfTrade" onFocus={()=>this.setState({radioTwoIsChecked:true})} label="Short" type="radio"  id="dt" value="Day Trade" component="input"  checked={ this.state.radioTwoIsChecked ? true : false}/>
                     </div>
                     </div>
                     <button className="ui button primary" disabled={this.submitValidation()}>Submit</button>

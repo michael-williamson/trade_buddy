@@ -8,7 +8,6 @@ class TradeView extends Component {
         this.props.fetchTrades({id:this.props.id});
     }
 
-
     componentDidUpdate(prevProps){
         if(this.props.id !== prevProps.id){
         this.props.fetchTrades({id:this.props.id});
@@ -20,12 +19,10 @@ class TradeView extends Component {
     }
 
     renderTrades = () => {
-
         if(this.props.trades.length === 0){
             return <tr><td>Loading...</td></tr>
         }else{
            return this.props.trades.map((trade,index)=>{
- 
                 return(
                     <tr key={trade._id} data-id={trade._id}>
                         <td>{trade.ticker}</td>
@@ -39,16 +36,10 @@ class TradeView extends Component {
                         <td>{trade.startDate}{trade.endDate ? ` thru ${trade.endDate}`: ""}</td>
                         <td><Link to={`/pages/trade_delete/${trade._id}`} className="ui button">Delete</Link></td>
                     </tr>
-                );
-                
-            }
-                
+                );               
+            }              
                 )}
             }
-
-     
-        
-    
 
     render() {
         return (
